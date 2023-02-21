@@ -11,8 +11,7 @@ export class App extends Component {
     bad: 0,
   };
 
-  handleBtn = e => {
-    const nameBtn = e.target.textContent.toLowerCase();
+  handleBtn = nameBtn => {
     this.setState(state => ({ [nameBtn]: state[nameBtn] + 1 }));
   };
 
@@ -32,7 +31,10 @@ export class App extends Component {
     return (
       <div>
         <Section title="Please leave feedback">
-          <FeedbackOptions onLeaveFeedback={this.handleBtn} />
+          <FeedbackOptions
+            onLeaveFeedback={this.handleBtn}
+            options={Object.keys(this.state)}
+          />
         </Section>
         <Section title="Statistics">
           {!this.countTotalFeedback() ? (
